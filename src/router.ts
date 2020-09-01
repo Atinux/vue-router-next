@@ -57,6 +57,7 @@ import { warn } from './warning'
 import { RouterLink } from './RouterLink'
 import { RouterView } from './RouterView'
 import { routerKey, routeLocationKey } from './injectionSymbols'
+import { addDevtools } from './devtools'
 
 /**
  * Internal type to define an ErrorHandler
@@ -975,6 +976,10 @@ export function createRouter(options: RouterOptions): Router {
           ready = false
         }
         unmountApp.call(this, arguments)
+      }
+
+      if (__DEV__) {
+        addDevtools(app, router)
       }
     },
   }
